@@ -8,6 +8,7 @@ import (
 
 	"github.com/google/uuid"
 	"github.com/maquentr/rssaggregator/internal/database"
+	// "github.com/maquentr/rssaggregator/internal/auth"
 )
 
 func (apiCfg *apiConfig) handlerCreateUser(w http.ResponseWriter, r *http.Request) {
@@ -34,5 +35,9 @@ func (apiCfg *apiConfig) handlerCreateUser(w http.ResponseWriter, r *http.Reques
 		return
 	}
 
+	respondWithJSON(w, 201, databaseUserToUser(user))
+}
+
+func (apiCfg *apiConfig) handlerGetUser(w http.ResponseWriter, r *http.Request, user database.User) {
 	respondWithJSON(w, 200, databaseUserToUser(user))
 }
